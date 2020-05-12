@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Game.h"
+#include <assert.h>
 
 std::string Game::getStr()
 {
@@ -11,6 +12,14 @@ InteractionType* Game::selectGameObject(std::string name)
    bool result = currentScene.isAvailable(name);
 
    if (result) {
+      GameObject gameObj;
+      bool gotObj = this->myGameObjects.getGameObject(name, &gameObj);      
+      if (gameObj.getid() != NULL_ID) {
+
+      }
+      else {
+         assert(false && "Game::selectGameObject: myGameObjects.getGameObject() returned NULL_ID!");
+      }
 
    }
 

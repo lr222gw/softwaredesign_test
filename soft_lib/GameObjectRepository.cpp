@@ -2,7 +2,14 @@
 #include "GameObjectRepository.h"
 
 
-GameObject GameObjectRepository::getGameObject(std::string gameElementName)
+bool GameObjectRepository::getGameObject(std::string gameObjectName, GameObject* gameobj)
 {
-   return GameObject();
+   
+   for (auto obj : this->obj_list) {
+      if (obj.getid() == gameObjectName) {
+         *gameobj = obj;
+         return true;
+      }
+   }
+   return false;
 }

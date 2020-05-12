@@ -3,12 +3,14 @@
 #include <string>
 
 #include "GameElement.h"
+#define NULL_ID "#empty#"
 
 class GameObject : public GameElement {
    std::string obj_id;
 
 public:
    GameObject() {
+      obj_id = NULL_ID;
    }
 
    GameObject(std::string obj_id) {
