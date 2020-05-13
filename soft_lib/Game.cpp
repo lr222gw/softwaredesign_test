@@ -14,14 +14,16 @@ std::vector<InteractionType*> Game::selectGameObject(std::string name)
    std::vector<InteractionType*> interactionList;
 
    if (result) {
-      GameObject* gameObj = nullptr;
+      //GameObject* gameObj;// = nullptr;
+      GameObject gameObj;
       std::cout << "Before:myGameObjects.getGameObject()" << std::endl;
-      bool gotObj = this->myGameObjects->getGameObject(name, gameObj);      
+      bool gotObj = this->myGameObjects->getGameObject(name, &gameObj);      //GAME OBJ is NULL even after!!! 
       std::cout << "After:myGameObjects.getGameObject()" << std::endl;
       
       //if (gameObj->getid() != NULL_ID) { //Since this is not allowed... SHOULD NOT BE HERE! 
       if(gotObj){
-         interactionList  = gameObj->listInteractionTypes();
+         //interactionList  = gameObj->listInteractionTypes();
+         interactionList  = gameObj.listInteractionTypes();
          return interactionList;
       }
       else {

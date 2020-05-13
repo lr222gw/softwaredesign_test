@@ -18,7 +18,8 @@ bool GameObjectRepository::getGameObject(std::string gameObjectName, GameObject*
       std::cout << "During:Loop_insideIF: " << gameObjectName << std::endl;
          if (obj->getid() == gameObjectName) {
             std::cout << "Before:Assign gameobj = obj: " << gameObjectName << std::endl;
-            gameobj = obj;
+            (*gameobj) = *obj;
+            //gameobj = obj;
             std::cout << "Aftrer:Assign gameobj = obj: " << gameObjectName << std::endl;
             return true;
          }
