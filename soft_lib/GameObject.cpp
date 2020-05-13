@@ -5,3 +5,8 @@ std::string GameObject::getid()
 {
    return obj_id;
 }
+
+std::vector<InteractionType*> GameObject::listInteractionTypes()
+{
+   return interactionTypes;
+}

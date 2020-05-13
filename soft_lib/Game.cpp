@@ -2,28 +2,35 @@
 #include "Game.h"
 #include <assert.h>
 
+#include <iostream>
 std::string Game::getStr()
 {
    return this->test;
 }
 
-InteractionType* Game::selectGameObject(std::string name)
+std::vector<InteractionType*> Game::selectGameObject(std::string name)
 {
-   bool result = currentScene.isAvailable(name);
+   bool result = currentScene->isAvailable(name);
+   std::vector<InteractionType*> interactionList;
 
    if (result) {
-      GameObject gameObj;
-      bool gotObj = this->myGameObjects.getGameObject(name, &gameObj);      
-      if (gameObj.getid() != NULL_ID) {
-
+      GameObject* gameObj = nullptr;
+      std::cout << "Before:myGameObjects.getGameObject()" << std::endl;
+      bool gotObj = this->myGameObjects->getGameObject(name, gameObj);      
+      std::cout << "After:myGameObjects.getGameObject()" << std::endl;
+      
+      //if (gameObj->getid() != NULL_ID) { //Since this is not allowed... SHOULD NOT BE HERE! 
+      if(gotObj){
+         interactionList  = gameObj->listInteractionTypes();
+         return interactionList;
       }
       else {
-         assert(false && "Game::selectGameObject: myGameObjects.getGameObject() returned NULL_ID!");
+         //assert(false && "Game::selectGameObject: myGameObjects.getGameObject() returned NULL_ID!");
       }
 
    }
 
-   return nullptr;
+   return interactionList;
 }
 
 

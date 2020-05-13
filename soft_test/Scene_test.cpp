@@ -5,7 +5,11 @@
 TEST(Scene_isAvailable, returns_true_on_available) {
 
    //Arrange
-   GameObject dummy("Dummy");
+   Look dummyType;
+   std::vector<InteractionType*> typeList;
+   typeList.push_back(&dummyType);
+
+   GameObject dummy("Dummy", typeList);
    std::vector<GameObject> gobj_vec;
    gobj_vec.push_back(dummy);
 

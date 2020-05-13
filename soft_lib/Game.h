@@ -12,25 +12,25 @@
 class Game {
 
 private:
-   Scene                currentScene;
-   Scene                playerInventory;
-   GameObjectRepository myGameObjects;
+   Scene                *currentScene;
+   Scene                *playerInventory;
+   GameObjectRepository *myGameObjects;
 
    std::string          test;
 
 public:
    Game() {}
-   Game(Scene inventory, Scene current, GameObjectRepository db)
+   Game(Scene *inventory, Scene *current, GameObjectRepository *db)
    {
-      playerInventory = inventory;
-      currentScene = current;
-      myGameObjects = db;
+      playerInventory   = inventory;
+      currentScene      = current;
+      myGameObjects     = db;
    }
 
    std::string getStr();
 
-   InteractionType* selectGameObject(std::string name);
-   InteractionOptions* selectInteraction(GameObject theGameObject, std::string theInteraction);
+   std::vector<InteractionType*> selectGameObject(std::string name);
+   InteractionOptions* selectInteraction(GameObject theGameObject, std::string theInteraction); //TODO: Change to std::vector<InteractionType>
    bool setInteractionOptions(std::string theOptions);
    void startInteraction();
    void abortInteraction();

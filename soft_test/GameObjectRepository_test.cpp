@@ -6,11 +6,12 @@ TEST(GameObjectRepository_getGameObject, returns_true_on_available) {
 
    //Arrange
    GameObjectRepository gor = GameObjectRepository(); 
-   GameObject obj;
+   GameObject* obj = new GameObject();
 
    //Act 
-   bool result = gor.getGameObject("Dummy", &obj);
+   bool result = gor.getGameObject("Dummy", obj);
 
+   //delete obj;
    //Assert
    ASSERT_EQ(result, true);
 }
@@ -18,9 +19,9 @@ TEST(GameObjectRepository_getGameObject, returns_true_on_available) {
 TEST(GameObjectRepository_getGameObject, returns_false_on_notavailable) {
    //Arrange
    GameObjectRepository gor;
-   GameObject obj;
+   GameObject *obj = new GameObject();
    //Act
-   bool result = gor.getGameObject("ThisIsNotAObjectThatExists", &obj);
+   bool result = gor.getGameObject("ThisIsNotAObjectThatExists", obj);
 
    //Assert
    ASSERT_EQ(result, false);
