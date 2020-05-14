@@ -33,13 +33,16 @@
     <ClInclude Include="InteractionType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InteractionOptions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractionOption.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gameObjectState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

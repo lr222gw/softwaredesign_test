@@ -17,9 +17,14 @@ public:
       //TODO: Replace dummy code with a real database
       //This is dummy code... 
       Look* dummy_type = new Look();
+      TurnOff* off = new TurnOff();
+      TurnOn* on = new TurnOn();
       std::vector<InteractionType*> gameobj_interactions;
       
-      gameobj_interactions.push_back(dummy_type);
+      gameobj_interactions.push_back(dummy_type);      
+      gameobj_interactions.push_back(off);
+      gameobj_interactions.push_back(on);
+
       GameObject * dummy_Obj = new GameObject("Dummy", gameobj_interactions);
       
       obj_list.push_back(dummy_Obj);

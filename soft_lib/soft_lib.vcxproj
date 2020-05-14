@@ -152,7 +152,8 @@
     <ClInclude Include="GameElement.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectRepository.h" />
-    <ClInclude Include="InteractionOptions.h" />
+    <ClInclude Include="gameObjectState.h" />
+    <ClInclude Include="InteractionOption.h" />
     <ClInclude Include="InteractionType.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Scene.h" />

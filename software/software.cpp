@@ -8,12 +8,37 @@
 int main()
 {
     std::cout << "Hello World!\n";
+    
+    Look dummyType;
+    TurnOn dummyTypeon;
+    TurnOff dummyTypeoff;
+    std::vector<InteractionType*> typeList;
+    GameObject dummy;
+    std::vector<GameObject> gobj_vec;
+    Scene* c_scene;
+    GameObjectRepository* objrep;
+    Scene* i_scene;
+    Game game;
+    typeList.push_back(&dummyType);
+    typeList.push_back(&dummyTypeon);
+    typeList.push_back(&dummyTypeoff);
 
-   Game g; 
-   std::cout << "Before: "<< g.getStr() <<  std::endl;
-   g.go();
+    dummy = GameObject("Dummy", typeList);
+    gobj_vec.push_back(dummy);
+
+    c_scene = new Scene(gobj_vec);
+    objrep = new GameObjectRepository();
+    i_scene = new Scene();
+
+    game = Game(i_scene, c_scene, objrep);
+   ////////////////////////////////////////////////
+   game.selectGameObject("Dummy");
+   game.selectInteraction(game.getCurrentGameObject(), "Look");
+   std::string ret = game.startInteraction();
+   
+    std::cout << ret << std::endl;
   
-   std::cout << "After: " <<  g.getStr() <<  std::endl;
+   //std::cout << "After: " <<  g.getStr() <<  std::endl;
 
    
 }

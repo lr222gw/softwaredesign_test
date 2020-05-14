@@ -7,7 +7,7 @@
 #include "Scene.h"
 #include "GameObjectRepository.h"
 #include "InteractionType.h"
-#include "InteractionOptions.h"
+#include "InteractionOption.h"
 
 class Game {
 
@@ -16,7 +16,9 @@ private:
    Scene                *playerInventory;
    GameObjectRepository *myGameObjects;
 
-   std::string          test;
+   GameObject           *currentGameObject;
+   
+   //std::string          test;
 
 public:
    Game() {}
@@ -25,17 +27,21 @@ public:
       playerInventory   = inventory;
       currentScene      = current;
       myGameObjects     = db;
+      currentGameObject = new GameObject(); //TODO NULL_ID? 
    }
 
-   std::string getStr();
+   //std::string getStr();
+   GameObject* getCurrentGameObject() { return currentGameObject; }
+   void setCurrentGameObject(GameObject* curr) { currentGameObject = curr; }
+   
 
    std::vector<InteractionType*> selectGameObject(std::string name);
-   InteractionOptions* selectInteraction(GameObject theGameObject, std::string theInteraction); //TODO: Change to std::vector<InteractionType>
-   bool setInteractionOptions(std::string theOptions);
-   void startInteraction();
+   std::vector<InteractionOption*> selectInteraction(GameObject *theGameObject, std::string theInteraction); //TODO: Change to std::vector<InteractionType>
+   void setInteractionOptions(std::string theOptions);
+   std::string startInteraction();
    void abortInteraction();
 
-   GameElement go();
+   //GameElement go();
 
 
 

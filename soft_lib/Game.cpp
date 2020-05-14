@@ -3,10 +3,10 @@
 #include <assert.h>
 
 #include <iostream>
-std::string Game::getStr()
-{
-   return this->test;
-}
+//std::string Game::getStr()
+//{
+//   return this->test;
+//}
 
 std::vector<InteractionType*> Game::selectGameObject(std::string name)
 {
@@ -15,13 +15,17 @@ std::vector<InteractionType*> Game::selectGameObject(std::string name)
 
    if (result) {
       
-      GameObject gameObj;
+      //GameObject gameObj;
+      GameObject *gameObj = getCurrentGameObject();
       
-      bool gotObj = this->myGameObjects->getGameObject(name, &gameObj);      
+      //bool gotObj = this->myGameObjects->getGameObject(name, &gameObj);      
+      bool gotObj = this->myGameObjects->getGameObject(name, gameObj);      
                  
       if(gotObj){
          
-         interactionList  = gameObj.listInteractionTypes();
+         //interactionList  = gameObj.listInteractionTypes();
+         interactionList  = gameObj->listInteractionTypes();
+         setCurrentGameObject(gameObj);
          return interactionList;
       }
       else {
@@ -34,28 +38,47 @@ std::vector<InteractionType*> Game::selectGameObject(std::string name)
 }
 
 
-InteractionOptions* Game::selectInteraction(GameObject theGameObject, std::string theInteraction)
+std::vector<InteractionOption*> Game::selectInteraction(GameObject *theGameObject, std::string theInteraction)
 {
-   return nullptr;
+   //GameObject* curr = getCurrentGameObject();
+   std::vector<InteractionOption*> options;
+
+   bool validPick = theGameObject->startInteraction(theInteraction);
+
+   if (validPick) {
+      options = theGameObject->listCurrentInteractionOptions();
+      //this->setCurrentGameObject(theGameObject);
+      this->setCurrentGameObject(theGameObject);
+   }
+
+   return options;
 }
 
 
 
-bool Game::setInteractionOptions(std::string theOptions)
+void Game::setInteractionOptions(std::string theOptions)
 {
-   return false;
+   this->currentGameObject->setCurrentInteractionOptions(theOptions);
+}
+
+std::string Game::startInteraction()
+{
+   
+   std::string ret = this->currentGameObject->startCurrentInteraction();
+   //std::cout << ret << std::endl;
+   return ret;
 }
 
 //void Game::startInteraction()
 //{
 //}
 
-void Game::abortInteraction()
-{
-}
+//void Game::abortInteraction()
+//{
+//}
 
-GameElement Game::go()
-{
-   this->test = "fofo";
-   return GameElement();
-}
+//GameElement Game::go()
+//{
+//   this->test = "fofo";
+//   return GameElement();
+//}
