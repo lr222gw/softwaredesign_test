@@ -9,8 +9,8 @@ int main()
 {
     std::cout << "Hello World!\n";
     
-    Look dummyType;
-    TurnOn dummyTypeon;
+    Look    dummyType;
+    TurnOn  dummyTypeon;
     TurnOff dummyTypeoff;
     std::vector<InteractionType*> typeList;
     GameObject dummy;
@@ -33,7 +33,7 @@ int main()
     game = Game(i_scene, c_scene, objrep);
    ////////////////////////////////////////////////
    game.selectGameObject("Dummy");
-   game.selectInteraction(game.getCurrentGameObject(), "Look");
+   game.selectInteraction(game.getCurrentGameObject(), "Turn On");
    std::string ret = game.startInteraction();
    
     std::cout << ret << std::endl;

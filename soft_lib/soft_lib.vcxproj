@@ -157,6 +157,7 @@
     <ClInclude Include="InteractionType.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Secretary.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />

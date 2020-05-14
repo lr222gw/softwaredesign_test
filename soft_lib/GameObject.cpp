@@ -64,12 +64,18 @@ void GameObject::setCurrentInteractionOptions(std::string the_options)
 std::string GameObject::startCurrentInteraction()
 {
    std::string actionString;
-   if (this->currentOption != nullptr) {
+   if (currentInteraction != nullptr) {
 
-      actionString = this->getCurrentInteraction()->action(this->obj_id, this->currentOption->getOption());
+      if (this->currentOption != nullptr) {
+
+         actionString = this->getCurrentInteraction()->action(this->obj_id, this->currentOption->getOption());
+      }
+      else {
+         actionString = this->getCurrentInteraction()->action(this->obj_id, "");
+      }
    }
    else {
-      actionString = this->getCurrentInteraction()->action(this->obj_id, "");
+      actionString = "You cant do that\n";
    }
    //TODO: Unset current object, currentType, currentOption
 
