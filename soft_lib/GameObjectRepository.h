@@ -29,7 +29,7 @@ public:
       
       obj_list.push_back(dummy_Obj);
       obj_Latest = dummy_Obj;
-      std::cout  << "Added dummy_obj to Obj_list: " << obj_Latest->getid() << std::endl;
+      //std::cout  << "Added dummy_obj to Obj_list: " << obj_Latest->getid() << std::endl;
    }
 
    //GameObjectRepository(const GameObjectRepository& cpy) {

@@ -22,13 +22,14 @@ private:
 
 public:
    Game() {}
-   Game(Scene *inventory, Scene *current, GameObjectRepository *db)
+   Game(Scene* inventory, Scene* current,  GameObjectRepository* db)
    {
-      playerInventory   = inventory;
-      currentScene      = current;
-      myGameObjects     = db;
+      playerInventory = inventory;
+      currentScene = current;
+      myGameObjects = db;
       currentGameObject = new GameObject(); //TODO NULL_ID? 
    }
+
 
    //std::string getStr();
    GameObject* getCurrentGameObject() { return currentGameObject; }
@@ -42,6 +43,9 @@ public:
    void abortInteraction();
 
    //GameElement go();
+
+   void initiateConversation(std::string theCharacter);
+
 
 
 

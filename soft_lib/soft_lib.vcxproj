@@ -147,19 +147,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="CharacterInterface.h" />
+    <ClInclude Include="CharacterRepository.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameElement.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectRepository.h" />
     <ClInclude Include="gameObjectState.h" />
+    <ClInclude Include="InputSanitiser.h" />
+    <ClInclude Include="InteractionEngine.h" />
     <ClInclude Include="InteractionOption.h" />
     <ClInclude Include="InteractionType.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="PhoneBook.h" />
+    <ClInclude Include="PlotEngine.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Secretary.h" />
+    <ClInclude Include="UserInterface_Facade.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CharacterInterface.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectRepository.cpp" />
