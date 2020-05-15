@@ -13,15 +13,15 @@ int main()
     UserInterface_Facade* facade = new UserInterface_Facade();
     
    ////////////////////////////////////////////////
-   game.selectGameObject("Dummy");
+   /*game.selectGameObject("Dummy");
    game.selectInteraction(game.getCurrentGameObject(), "Turn On");
-   std::string ret = game.startInteraction();
+   std::string ret = game.startInteraction();*/
    
 
    // 
-   facade
+   facade->startGame();
 
-    std::cout << ret << std::endl;
+    //std::cout << ret << std::endl;
   
    //std::cout << "After: " <<  g.getStr() <<  std::endl;
 

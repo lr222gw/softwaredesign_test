@@ -6,12 +6,12 @@
 
 #include <iostream>
 
-class CharacterRepository {
+class CharacterRepository { //Singleton
+
+   static CharacterRepository* theInstance;
 
    std::vector<Character*> char_list;
 
-public:
-   Character* char_Latest;
    CharacterRepository() {
 
       //TODO: Replace dummy code with a real database
@@ -25,8 +25,17 @@ public:
       char_list.push_back(Secretary);
 
    }
+public:
+   //Character* char_Latest;
 
+   static CharacterRepository* getInstance() {
 
+      if (theInstance == nullptr) {
+         theInstance = new CharacterRepository();
+      }
+      return theInstance;
+
+   }
 
    ~CharacterRepository() {
       for (auto o : char_list) {

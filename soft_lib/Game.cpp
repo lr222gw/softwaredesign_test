@@ -69,6 +69,31 @@ std::string Game::startInteraction()
    return ret;
 }
 
+CharacterInterface* Game::initiateConversation(std::string theCharacter)
+{
+
+   CharacterInterface* characterInterface = nullptr;
+   //is available in scene
+   if (currentScene->isAvailable(theCharacter)) {
+
+      //getCharacter from PhoneBook
+      Character* currentChar = this->playerPhoneBook->getContactMethod(theCharacter);
+      
+      if (currentChar != nullptr) {
+
+         //Create a CharacterInterface for the given Character
+         //CharacterInterface curr_characterInterface = 
+         characterInterface = new CharacterInterface(theCharacter);
+         
+         //Activate interview
+      }
+   }
+
+
+
+   return characterInterface;
+}
+
 //void Game::startInteraction()
 //{
 //}

@@ -8,6 +8,9 @@
 #include "GameObjectRepository.h"
 #include "InteractionType.h"
 #include "InteractionOption.h"
+#include "PhoneBook.h"
+#include "Secretary.h"
+#include "CharacterInterface.h"
 
 class Game {
 
@@ -17,17 +20,28 @@ private:
    GameObjectRepository *myGameObjects;
 
    GameObject           *currentGameObject;
+
+   PhoneBook            *playerPhoneBook;
    
    //std::string          test;
 
 public:
-   Game() {}
+   Game() {
+      playerInventory = nullptr;
+      currentScene = nullptr;
+      myGameObjects = nullptr;
+
+      currentGameObject = new GameObject(); //TODO NULL_ID? 
+      playerPhoneBook = new PhoneBook();
+      Secretary* secretary = new Secretary();
+      playerPhoneBook->addContect(secretary);
+   }
    Game(Scene* inventory, Scene* current,  GameObjectRepository* db)
+      : Game()
    {
       playerInventory = inventory;
       currentScene = current;
-      myGameObjects = db;
-      currentGameObject = new GameObject(); //TODO NULL_ID? 
+      myGameObjects = db;   
    }
 
 
@@ -44,7 +58,7 @@ public:
 
    //GameElement go();
 
-   void initiateConversation(std::string theCharacter);
+   CharacterInterface* initiateConversation(std::string theCharacter);
 
 
 

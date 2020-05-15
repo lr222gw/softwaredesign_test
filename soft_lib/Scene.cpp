@@ -14,6 +14,7 @@ bool Scene::isAvailable(std::string gameElementName)
          return true;
       }
    }
+   
 
    return false;
 }

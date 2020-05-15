@@ -53,7 +53,11 @@ public:
       GameObjectRepository* objrep = new GameObjectRepository();
 
       game = new Game(inventory_scene, start_scene, objrep);
-
       
    }
+
+   void startGame() {
+      game->initiateConversation(SECRETARY);
+   }
+
 };
