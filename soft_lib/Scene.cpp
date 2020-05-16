@@ -10,7 +10,7 @@ bool Scene::isAvailable(std::string gameElementName)
 {
    
    for (auto obj : this->gameObjects) {
-      if (obj.getid() == gameElementName) {
+      if (obj->getName() == gameElementName) {
          return true;
       }
    }

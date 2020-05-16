@@ -27,21 +27,29 @@ private:
 
 public:
    Game() {
-      playerInventory = nullptr;
-      currentScene = nullptr;
-      myGameObjects = nullptr;
+      std::cout << "A" << std::endl;
+      playerInventory   = nullptr;
+      currentScene      = nullptr;
+      myGameObjects     = nullptr;
 
-      currentGameObject = new GameObject(); //TODO NULL_ID? 
-      playerPhoneBook = new PhoneBook();
-      Secretary* secretary = new Secretary();
-      playerPhoneBook->addContect(secretary);
+      currentGameObject    = new GameObject(); //TODO NULL_ID? 
+      playerPhoneBook      = new PhoneBook();
+      
    }
-   Game(Scene* inventory, Scene* current,  GameObjectRepository* db)
+   Game(Scene* inventory, Scene* current,  GameObjectRepository* go_db)
       : Game()
    {
+      std::cout << "B" << std::endl;
       playerInventory = inventory;
       currentScene = current;
-      myGameObjects = db;   
+      myGameObjects = go_db;
+
+      //Create Secretary, add to contacts + GameObjectRepository
+      Secretary* secretary = new Secretary();
+      playerPhoneBook->addContact(secretary);
+      
+      CharacterRepository::insertCharacter(secretary);
+      
    }
 
 

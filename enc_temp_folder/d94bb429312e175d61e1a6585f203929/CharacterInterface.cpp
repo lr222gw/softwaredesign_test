@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "CharacterInterface.h"
 
-void CharacterInterface::activate()
+std::string CharacterInterface::activate()
 {
-   currentActive->getInitialGreeting();
+   return currentActive->getInitialGreeting();
 
    //TODO:!! We should send the output to the UserInterface_IO...
 }

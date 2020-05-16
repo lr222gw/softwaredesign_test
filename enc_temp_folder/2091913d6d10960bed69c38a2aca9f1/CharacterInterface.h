@@ -23,8 +23,7 @@ public:
    std::string          sendQuery();
    std::string          endConversation();
 
-   //std::string          activate();
-   void                 activate();
+   std::string          activate();
 
 
 };

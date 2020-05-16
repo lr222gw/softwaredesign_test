@@ -16,28 +16,33 @@ public:
 
       //Prepare Demo Objects
       std::vector<InteractionType*> dummy_typeList{&Look_Type, &Taste_Type};
-      GameObject dummy("Dummy", dummy_typeList);
+      GameObject *dummy = new GameObject("Dummy", dummy_typeList);
       
       //Prepare Object; lamp 
       std::vector<InteractionType*> lamp_typeList{ &Look_Type, &Move_Type };
-      GameObject lamp("Lamp", lamp_typeList, false);
+      GameObject *lamp = new GameObject("Lamp", lamp_typeList, false);
 
       //Prepare Object Frog
       std::vector<InteractionType*> frog_typeList{ &Look_Type, &Taste_Type };
-      GameObject frog("Frog", frog_typeList); 
+      GameObject *frog = new GameObject("Frog", frog_typeList);
 
       //Prepare Object wallet
-      GameObject wallet;
       std::vector<InteractionType*> wallet_typeList{ &Look_Type };
+      GameObject* wallet = new GameObject("Wallet", wallet_typeList);
+
+      //Prepare a Some random Character.. : Balto 
+      Character *balto = new Character("Balto", "ohoy! Name's Balto. Whut can er do fer ye?...");
+      
       
       //!Add Objects to ObjectVector for scenes
-      std::vector<GameObject> testScene_objects{dummy, lamp, frog};
+      //std::vector<GameObject> testScene_objects{ dummy, lamp, frog, balto }; //NOTE; Characters + objects
+      std::vector<GameElement*> testScene_objects{ dummy, lamp, frog, balto }; //NOTE; Characters + objects
       Scene *test_scene = new Scene(testScene_objects);
 
-      std::vector<GameObject> inventoryScene_objects{wallet};
+      std::vector<GameElement*> inventoryScene_objects{wallet};
       Scene *inventory_scene = new Scene(inventoryScene_objects);
 
-      std::vector<GameObject> startScene_objects{}; //TODO:: What should we put here?... Nothing? Or only Secretary?
+      std::vector<GameElement*> startScene_objects{}; //TODO:: What should we put here?... Nothing? Or only Secretary?
       Scene *start_scene = new Scene(startScene_objects);
       
       //NOTE  NOTE NOTE //NOTE  NOTE NOTE //NOTE  NOTE NOTE 
@@ -57,7 +62,10 @@ public:
    }
 
    void startGame() {
-      game->initiateConversation(SECRETARY);
+      CharacterInterface* character_interface = game->initiateConversation(SECRETARY);
+      if (character_interface == nullptr) {
+         std::cout << "Character_interface was null; Character '"<< SECRETARY<<"' Not found" << std::endl;
+      }
    }
 
 };

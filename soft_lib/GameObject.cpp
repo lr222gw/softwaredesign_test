@@ -1,10 +1,10 @@
 #include "pch.h"
 #include "GameObject.h"
 
-std::string GameObject::getid()
-{
-   return obj_id;
-}
+//std::string GameObject::getid()
+//{
+//   return obj_id;
+//}
 
 std::vector<InteractionType*> GameObject::listInteractionTypes()
 {
@@ -68,10 +68,12 @@ std::string GameObject::startCurrentInteraction()
 
       if (this->currentOption != nullptr) {
 
-         actionString = this->getCurrentInteraction()->action(this->obj_id, this->currentOption->getOption());
+         //actionString = this->getCurrentInteraction()->action(this->obj_id, this->currentOption->getOption());
+         actionString = this->getCurrentInteraction()->action(this->getName(), this->currentOption->getOption());
       }
       else {
-         actionString = this->getCurrentInteraction()->action(this->obj_id, "");
+         //actionString = this->getCurrentInteraction()->action(this->obj_id, "");
+         actionString = this->getCurrentInteraction()->action(this->getName(), "");
       }
    }
    else {

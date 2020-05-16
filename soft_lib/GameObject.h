@@ -15,7 +15,7 @@ enum status {
 };
 
 class GameObject : public GameElement {
-   std::string obj_id;
+   //std::string obj_id;
 
    std::vector<InteractionType*> interactionTypes;
    InteractionType*              currentInteraction;
@@ -24,16 +24,19 @@ class GameObject : public GameElement {
    bool isOn_state;   
 
 public:
-   GameObject() {
-      obj_id = NULL_ID;
+   GameObject():GameElement(NULL_ID){
+      //obj_id = NULL_ID;
       currentInteraction      = nullptr;
       currentOption           = nullptr;
 
       isOn_state              = false;
    }
 
-   GameObject(std::string obj_id, std::vector<InteractionType*> interactionTypes, bool isOn = false) {
-      this->obj_id = obj_id;
+   GameObject(std::string obj_id, std::vector<InteractionType*> interactionTypes, bool isOn = false) 
+      : GameElement(obj_id)
+   {
+      //this->obj_id = obj_id;
+      //this->name = obj_id;
 
       this->interactionTypes  = interactionTypes;
       currentInteraction      = nullptr;
@@ -43,7 +46,7 @@ public:
       
    }
 
-   std::string getid();
+   //std::string getid();
    InteractionType* getCurrentInteraction() { return currentInteraction; }
    void setCurrentInteraction(InteractionType* curr) { currentInteraction = curr; }
 

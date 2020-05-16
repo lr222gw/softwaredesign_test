@@ -8,11 +8,13 @@
 
 class Scene : public GameElement {
 private: 
-   std::vector<GameObject> gameObjects;
+   //std::vector<GameObject> gameObjects;
+   std::vector<GameElement*> gameObjects;
    
 public:
    Scene() {}
-   Scene(std::vector<GameObject> gameObjects)  {
+   //Scene(std::vector<GameObject> gameObjects)  {
+   Scene(std::vector<GameElement*> gameObjects)  {
       this->gameObjects = gameObjects;
    }
 

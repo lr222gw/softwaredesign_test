@@ -14,7 +14,7 @@ public:
    PhoneBook() {
       
    }
-   void addContect(Character* newContact) {
+   void addContact(Character* newContact) {
       
       if (contactDoesNotExist(newContact->getName())) {
          contacts.push_back(newContact);

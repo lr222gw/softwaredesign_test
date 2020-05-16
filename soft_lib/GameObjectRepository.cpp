@@ -14,7 +14,8 @@ bool GameObjectRepository::getGameObject(std::string gameObjectName, GameObject*
       
       if (obj != nullptr) {         
       
-         if (obj->getid() == gameObjectName) {
+         //if (obj->getid() == gameObjectName) {s
+         if (obj->getName() == gameObjectName) {
             
             (*gameobj) = *obj;            
             return true;

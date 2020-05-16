@@ -8,7 +8,7 @@
 
 class CharacterRepository { //Singleton
 
-   static CharacterRepository* theInstance;
+   //static CharacterRepository* theInstance;
 
    std::vector<Character*> char_list;
 
@@ -30,11 +30,25 @@ public:
 
    static CharacterRepository* getInstance() {
 
-      if (theInstance == nullptr) {
-         theInstance = new CharacterRepository();
-      }
+     //if (theInstance == nullptr) {
+     //    theInstance = new CharacterRepository();
+     //}
+      static CharacterRepository* theInstance = new CharacterRepository();
       return theInstance;
+   }
 
+   static void insertCharacters(std::vector<Character*> characters) {
+      auto ptr =  getInstance();
+      for (auto character : characters) {
+         ptr->char_list.push_back(character); //? Correct Pointer?...
+         
+      }
+   }
+
+   static void insertCharacter(Character* character) {
+      auto ptr = getInstance();
+      ptr->char_list.push_back(character); //? Correct Pointer?...
+      
    }
 
    ~CharacterRepository() {
@@ -45,9 +59,6 @@ public:
       }
    }
 
-   bool getCharacter(std::string theCharacter, Character* character);
-
-
-
+   bool getCharacter(std::string theCharacter, Character** character);
 
 };

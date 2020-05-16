@@ -3,7 +3,7 @@
 #include <string>
 #include "Character.h"
 
-#define SECRETARY "secretary"
+#define SECRETARY "Dr. Secretary"
 
 class Secretary : public Character{
 

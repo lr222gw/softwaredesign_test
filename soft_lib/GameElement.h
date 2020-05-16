@@ -2,7 +2,7 @@
 #include <string>
 
 class GameElement {
-
+protected:
    std::string name;
 public:
 

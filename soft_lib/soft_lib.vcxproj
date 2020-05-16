@@ -166,9 +166,11 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Secretary.h" />
     <ClInclude Include="UserInterface_Facade.h" />
+    <ClInclude Include="UserInterface_IO.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CharacterInterface.cpp" />
+    <ClCompile Include="CharacterRepository.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectRepository.cpp" />
