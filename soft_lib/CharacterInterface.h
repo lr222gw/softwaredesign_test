@@ -4,6 +4,7 @@
 #include "Character.h"
 #include "InputSanitiser.h"
 #include "CharacterRepository.h"
+#include "UserInterface_IO.h"
 
 #include <iostream>
 
@@ -20,7 +21,7 @@ public:
    }
    //CharacterInterface*  create(std::string theCharacter); //Constructor
 
-   std::string          sendQuery();
+   std::string          sendQuery(std::string theQuery);
    std::string          endConversation();
 
    //std::string          activate();

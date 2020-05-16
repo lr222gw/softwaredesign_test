@@ -27,7 +27,7 @@ private:
 
 public:
    Game() {
-      std::cout << "A" << std::endl;
+      
       playerInventory   = nullptr;
       currentScene      = nullptr;
       myGameObjects     = nullptr;
@@ -39,7 +39,7 @@ public:
    Game(Scene* inventory, Scene* current,  GameObjectRepository* go_db)
       : Game()
    {
-      std::cout << "B" << std::endl;
+      
       playerInventory = inventory;
       currentScene = current;
       myGameObjects = go_db;

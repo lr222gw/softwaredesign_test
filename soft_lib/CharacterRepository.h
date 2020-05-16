@@ -17,12 +17,10 @@ class CharacterRepository { //Singleton
       //TODO: Replace dummy code with a real database
       //This is dummy code... 
 
-      Character *Secretary = new Character(
+      /*Character *Secretary = new Character(
          "Secretary", 
-         "Hello, i'm your Secretary. Type stuff to do stuff...");
-      
-
-      char_list.push_back(Secretary);
+         "Hello, i'm your Secretary. Type stuff to do stuff...");     */
+      //char_list.push_back(Secretary);
 
    }
 public:

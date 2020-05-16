@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-class UserInterface_IO {
+class UserInterface_IO { //<<:Singleton:>>
    //UserInterface_IO* theUserInterface_IO;
 
    UserInterface_IO() {};
@@ -34,9 +34,9 @@ public:
 
    static std::string in() {
       UserInterface_IO* ref = getReference();
-      ref->input(); 
+      std::string input_str = ref->input(); 
 
-      
+      return input_str;
    }
 
 

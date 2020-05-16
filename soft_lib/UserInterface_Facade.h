@@ -4,6 +4,10 @@
 
 #include "Game.h"
 
+#include "UserInterface_IO.h"
+
+
+#define EXIT_STR  "exit"
 //This class is the Middleman between UserInterface (commandLine) and Business Logic  
 class UserInterface_Facade { 
    Game *game;
@@ -66,6 +70,18 @@ public:
       if (character_interface == nullptr) {
          std::cout << "Character_interface was null; Character '"<< SECRETARY<<"' Not found" << std::endl;
       }
+
+
+      //Query loop 
+      std::string response;
+      while (response != EXIT_STR){
+         std::string input_str = UserInterface_IO::in();
+         response = character_interface->sendQuery(input_str);
+
+      }
+
+
+      
    }
 
 };

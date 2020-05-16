@@ -1,7 +1,18 @@
 #include "pch.h"
 #include "CharacterInterface.h"
 
-#include "UserInterface_IO.h"
+
+
+std::string CharacterInterface::sendQuery(std::string theQuery)
+{
+   std::string response = "DUMMDUMM"; 
+
+   std::string safeQuery = this->mySanitiser.sanitiseInput(theQuery);
+
+   response = this->currentActive->query(safeQuery);
+
+   return response;
+}
 
 void CharacterInterface::activate()
 {
