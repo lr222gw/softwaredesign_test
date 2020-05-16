@@ -6,8 +6,11 @@
 
 class InteractionEngine {
 
+
 public: 
-   InteractionEngine* create();
+   InteractionEngine() {}
+
+   //InteractionEngine* create();
 
    std::string parseQuery(std::string theQuery);
    
