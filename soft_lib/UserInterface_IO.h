@@ -4,22 +4,39 @@
 #include <string>
 
 class UserInterface_IO {
-   static UserInterface_IO* theUserInterface_IO;
+   //UserInterface_IO* theUserInterface_IO;
 
    UserInterface_IO() {};
-public: 
 
-   static void output(std::string content) {
-      if (theUserInterface_IO == nullptr) { theUserInterface_IO = new UserInterface_IO(); }
-      std::cout << content << std::endl;
+   static UserInterface_IO* getReference() {
+
+      UserInterface_IO* theUserInterface_io = new UserInterface_IO();
+      return theUserInterface_io;
    }
 
-   static std::string input() {
-      if (theUserInterface_IO == nullptr) { theUserInterface_IO = new UserInterface_IO(); }
+   void output(std::string content) { 
+      std::cout << content << std::endl; 
+   }
 
+   std::string input() {
       std::string input;
       std::cin >> input;
       return input;
+   }
+
+public: 
+   
+
+   static void out(std::string content) {
+      UserInterface_IO* ref = getReference();
+      ref->output(content);
+   }
+
+   static std::string in() {
+      UserInterface_IO* ref = getReference();
+      ref->input(); 
+
+      
    }
 
 

@@ -16,7 +16,7 @@ public:
       CharacterRepository* theInstance = CharacterRepository::getInstance();
       //Character** ch_to_get;
       bool success = theInstance->getCharacter(theCharacter, &currentActive);
-      std::cout << "yes";
+      
    }
    //CharacterInterface*  create(std::string theCharacter); //Constructor
 
