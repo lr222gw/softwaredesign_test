@@ -17,7 +17,7 @@ Character* PhoneBook::getContactMethod(std::string theCharacter)
    if (contactDoesNotExist(theCharacter) == false) { // Checks if Contact exists...
       for (auto contact : contacts) {
          if (contact->getName() == theCharacter) {
-            std::cout << "returns Contact (in case of error...)" << std::endl;
+            //std::cout << "returns Contact (in case of error...)" << std::endl;
             return contact; // <- might be wrong pointer! alternatively *contact... I think
          }
       }

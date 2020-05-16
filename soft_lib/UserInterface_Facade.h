@@ -77,7 +77,7 @@ public:
       while (response != EXIT_STR){
          std::string input_str = UserInterface_IO::in();
          response = character_interface->sendQuery(input_str);
-
+         UserInterface_IO::out(response);
       }
 
 

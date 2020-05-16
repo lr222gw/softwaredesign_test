@@ -16,16 +16,22 @@ std::string Character::query(std::string theQuery)
    //parsed_query: hoglandspark 
    //character_state *currstate;
    
-   //currstate = this->searchQueries(parsed_query,this->state);
+   character_query q = this->searchQueries(parsed_query);
    
+   if (q.query != NULL_QUERY) {
 
-   std::string plotState = Plot_engine.getPlotState();                  //What do we want here....
 
-   std::string theResponse;
-   std::string nextConversationOptions;
+      std::string plotState = Plot_engine.getPlotState();                  //What do we want here....
 
-   std::string formatedResponse = interaction_engine.formatResponse(theResponse, nextConversationOptions);   // hmm
+      std::string theResponse = q.response;
 
-   return formatedResponse;
+      
+
+      std::string formatedResponse = interaction_engine.formatResponse(theResponse, this);   // hmm
+
+      return formatedResponse;
+   }
+
+   return "Dunno";
 
 }

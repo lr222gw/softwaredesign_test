@@ -15,7 +15,7 @@ class UserInterface_IO { //<<:Singleton:>>
    }
 
    void output(std::string content) { 
-      std::cout << content << std::endl; 
+      std::cout << content; 
    }
 
    std::string input() {
@@ -29,6 +29,8 @@ public:
 
    static void out(std::string content) {
       UserInterface_IO* ref = getReference();
+      for (int i = 0; i < 50; i++) { ref->output("\n"); }
+      content += "\n\n>>";
       ref->output(content);
    }
 

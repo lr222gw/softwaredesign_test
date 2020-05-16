@@ -16,9 +16,13 @@ std::string CharacterInterface::sendQuery(std::string theQuery)
 
 void CharacterInterface::activate()
 {
-   std::string greeting = currentActive->getInitialGreeting();
+   //std::string greeting = currentActive->getInitialGreeting();
 
-   UserInterface_IO::out(greeting);
+   
+   
+   UserInterface_IO::out(currentActive->present_by_state());
+  
+   
    
 
    //TODO:!! We should send the output to the UserInterface_IO...

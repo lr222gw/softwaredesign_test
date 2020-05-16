@@ -2,7 +2,7 @@
 
 
 #include <string>
-
+#include "Character.h"
 
 class InteractionEngine {
 
@@ -14,6 +14,8 @@ public:
 
    std::string parseQuery(std::string theQuery);
    
-   std::string formatResponse(std::string theResponse, std::string nextConversationOptions);
+   //std::string formatResponse(std::string theResponse, std::string nextConversationOptions, std::string name);
+   //std::string formatResponse(std::string theResponse, std::string nextConversationOptions, Character * curr);
+   std::string formatResponse(std::string theResponse, Character * curr);
 
 };

@@ -15,6 +15,26 @@ public:
       :Character("Dr. Secretary", "Hello, I'm Dr. Secretary.") 
    {
       //hardcoded for demo
+      this->state = character_state(
+         "Mission",
+         "You've been hired by mr.*Ceasar* to investigate a potential murder, the victims name is *Brutus*.\nYou should head to the crimescene, it's at the north corner of the *Town square*. You can't miss it.",
+         std::vector<character_query>{
+         character_query("Ceasar",
+            "Ceasar is the owner of *MegaCorp*."),
+            character_query("Brutus",
+               "We don't know much more about Brutus other than he was working for *MegaCorp*. Maybe you could Check if there's anything of interest at his officestall..."),
+
+            character_query("MegaCorp",
+               "It's a corperation owned by Ceasar Zalad. \nTheir office is located at the West corner of *TownSquare*. "),
+            character_query("Townsquare",
+               "You can navigate to Townsquare by typing \\townsqaure")
+      });
+      this->pending_state_presentation = true;
+              
+   }
+
+
+
      /* this->state = new character_state(
          "Mission",
          "You've been hired by mr.*Ceasar* to investigate a potential murder, the victims name is *Brutus*.\nYou should head to the crimescene, it's at the north corner of the *Town square*. You can't miss it.",
@@ -35,7 +55,7 @@ public:
          );*/
 
       
-   }
+   //}
 
    
    

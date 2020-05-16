@@ -8,7 +8,7 @@
 
 int main()
 {
-    std::cout << "Hello Demo!\n";
+    //std::cout << "Hello Demo!\n";
 
     UserInterface_Facade* facade = new UserInterface_Facade();
     

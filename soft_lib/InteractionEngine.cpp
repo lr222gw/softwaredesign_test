@@ -3,10 +3,20 @@
 
 std::string InteractionEngine::parseQuery(std::string theQuery)
 {
-   return std::string();
+   
+   return theQuery;
 }
 
-std::string InteractionEngine::formatResponse(std::string theResponse, std::string nextConversationOptions)
+//std::string InteractionEngine::formatResponse(std::string theResponse, std::string nextConversationOptions, Character* curr)
+std::string InteractionEngine::formatResponse(std::string theResponse, Character* curr)
 {
-   return std::string();
+   std::string concatinated = curr->getName() + ":\n";
+   concatinated += theResponse + "\n";
+   std::string conversationOptions = "\n[";
+   conversationOptions += curr->getQueryOptions();
+   conversationOptions += " ]\n";
+
+   concatinated = conversationOptions;
+
+   return concatinated;
 }
