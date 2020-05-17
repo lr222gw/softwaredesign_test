@@ -95,25 +95,68 @@ public:
                //CharacterInterface *character_interface = game->initiateConversation(SECRETARY);
                doInterviewScenario(SECRETARY);
             }else if (input_str ==  "\\townsquare") {
-               std::string input = ""; 
-               while (input != EXIT_STR) {
+               enterScene("townsquare");
+               /*std::string input = ""; 
+               while (input != EXIT_STR && input != "\\leave") {
                   Scene* s = game->getScene("townsquare");
                   UserInterface_IO::out_scene(s);
                   input = UserInterface_IO::in();
-               }
+               }*/
                
             }
-            else if (input_str ==  "\\inventory") {
+            else if (input_str ==  "\\inventory" ) {
                std::string input = "";
-               while (input != EXIT_STR) {
+               while (input != EXIT_STR && input != "\\leave") {
                   Scene* s = game->getScene("inventory");
+                  
                   UserInterface_IO::out_scene(s);
                   input = UserInterface_IO::in();
+
+                  
+
                }
 
             }
          }
       }      
+   }
+
+   std::string parseInput(std::string in) {
+
+      //is it a default command
+      if (in == "\\secretary") {
+         doInterviewScenario(SECRETARY);
+      }
+      else if (in == "\\inventory") {
+         enterScene("inventory");
+      }
+
+      //Scenes
+
+      //Objects in currentScene
+      
+
+      return "done";
+   }
+
+   std::string enterScene(std::string scenename) {
+
+      std::string input = "";
+      std::string prevScene = this->game->getCurrentScene()->getName();
+      while (input != EXIT_STR && input != "\\leave") {
+         Scene* s = game->getScene(scenename);
+         if (s != nullptr) {
+
+            UserInterface_IO::out_scene(s);
+            input = UserInterface_IO::in();
+            parseInput(input);
+            if (input == "\\back") {
+               enterScene(prevScene);
+            }
+         }
+         else { return "invalid scene"; }
+      }
+      
    }
 
    std::string doInterviewScenario(std::string character_name) {

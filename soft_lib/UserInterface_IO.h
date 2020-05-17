@@ -35,7 +35,7 @@ public:
       print = scene->getName()+ ":\n";
       print += scene->getDescription();
       print += "\n\nYou see the following things in the scene: \n" + scene->listAvailableElements();      
-      print += "\n\nCommands : [ \\leave, \\secretary, \\inventory]";
+      print += "\n\nCommands : [ \\leave, \\secretary, \\inventory, \\back ]";
       print += "\n>>";
       ref->output(print);
    }

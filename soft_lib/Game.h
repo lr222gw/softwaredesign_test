@@ -56,11 +56,13 @@ public:
       
    }
    Scene* getScene(std::string name) {
-      for (auto s : *scenes) { if (s->getName() == name) { return s; } }
+      
+      for (auto s : *scenes) { if (s->getName() == name) { currentScene = s; return s; } }
       return nullptr;
    }
 
    //std::string getStr();
+   Scene* getCurrentScene() { return currentScene; }
    GameObject* getCurrentGameObject() { return currentGameObject; }
    void setCurrentGameObject(GameObject* curr) { currentGameObject = curr; }
    
