@@ -31,6 +31,21 @@ std::string Character::query(std::string theQuery)
 
       return formatedResponse;
    }
+   else {
+      //Alt. Commands
+
+      std::string theResponse; 
+
+      if (theQuery == "\\back") { theResponse = this->state.presentation; }
+      else if (theQuery == "\\leave") { return "leave"; }
+      else {
+         theResponse = "I don't know how to respond to that...";
+
+      }
+      std::string formatedResponse = interaction_engine.formatResponse(theResponse, this);
+
+      return formatedResponse;
+   }
 
    return "Dunno";
 

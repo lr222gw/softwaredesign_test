@@ -77,6 +77,7 @@ public:
       if (this->pending_state_presentation) {
          this->pending_state_presentation = false;  //reset it         
          theResult += this->state.presentation;         
+         theResult += "\n\n[ "+this->getQueryOptions()+" ]";
       }
       else {
          theResult += this->greeting;
@@ -89,7 +90,8 @@ public:
          if (q.query == search_str) {
             return q;
          }
-      }
+      }     
+
       return character_query(NULL_QUERY, NULL_QUERY);
    }
 
@@ -103,13 +105,13 @@ public:
             //nextConversationOptions += " " + q.query;
             nextConversationOptions += q.query;
          }
-         else if (c == this->state.nmbr_of_quries) {
+         else{
             nextConversationOptions += ", " + q.query;
          }
          c++;
       }
       //Add Standard Options
-      nextConversationOptions += ", \\Townquare";  //TODO:: lägg till saker som behövs här....
+      nextConversationOptions += ", \\Townquare, \\Back, \\leave";  //TODO:: lägg till saker som behövs här....
 
       return nextConversationOptions;
    }

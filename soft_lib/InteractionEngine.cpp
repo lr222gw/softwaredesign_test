@@ -16,7 +16,7 @@ std::string InteractionEngine::formatResponse(std::string theResponse, Character
    conversationOptions += curr->getQueryOptions();
    conversationOptions += " ]\n";
 
-   concatinated = conversationOptions;
+   concatinated += conversationOptions;
 
    return concatinated;
 }
