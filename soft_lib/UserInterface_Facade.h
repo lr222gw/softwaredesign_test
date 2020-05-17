@@ -187,6 +187,8 @@ public:
          std::vector<InteractionType*> interactionTypes = this->game->selectGameObject(objet);
          UserInterface_IO::out_object(*this->game->getCurrentGameObject(), interactionTypes);
          input = UserInterface_IO::in();
+         if (input == "\\leave") {  break; }
+         
 
          std::vector<InteractionOption*> interactionOptions = 
             game->selectInteraction(*this->game->getCurrentGameObject(),input);
@@ -213,6 +215,7 @@ public:
          //}
       }
 
+      game->abortInteraction();
       return "Done";
    }
 

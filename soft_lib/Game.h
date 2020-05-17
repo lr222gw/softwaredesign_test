@@ -35,7 +35,8 @@ public:
       myGameObjects     = nullptr;
       scenes            = nullptr;
 
-      currentGameObject    = new GameObject(); //TODO NULL_ID? 
+      //currentGameObject    = new GameObject(); //TODO NULL_ID? 
+      unset_currentGameObject();// currentGameObject = new GameObject(); //TODO NULL_ID? 
       playerPhoneBook      = new PhoneBook();
       
    }
@@ -65,6 +66,11 @@ public:
       //static Scene emptyScene = new Scene();
       currentScene = nullptr;
    }
+   void unset_currentGameObject() {
+      GameObject *emptyObject = new GameObject(); //TODO: Ugly... causing memory leaks... but but...
+      
+      currentGameObject = emptyObject;
+   }
 
    //std::string getStr();
    Scene* getCurrentScene() { return currentScene; }
@@ -76,7 +82,12 @@ public:
    std::vector<InteractionOption*> selectInteraction(GameObject *theGameObject, std::string theInteraction); //TODO: Change to std::vector<InteractionType>
    void setInteractionOptions(std::string theOptions);
    std::string startInteraction();
-   void abortInteraction();
+   
+   void abortInteraction() {
+      this->unset_currentGameObject();
+
+      
+   }
 
    //GameElement go();
 
