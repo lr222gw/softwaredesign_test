@@ -37,7 +37,8 @@ std::string Character::query(std::string theQuery)
       std::string theResponse; 
 
       if (theQuery == "\\back") { theResponse = this->state.presentation; }
-      else if (theQuery == "\\leave") { return "leave"; }
+      else if (theQuery == "mission") { if (this->name == "Dr. Secretary") { theResponse = this->state.presentation; } }
+      else if (theQuery == "\\leave") { return EXIT_STR; }
       else {
          theResponse = "I don't know how to respond to that...";
 

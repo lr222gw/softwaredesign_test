@@ -2,8 +2,17 @@
 #include "Scene.h"
 
 
-void Scene::listAvailableElements()
+std::string Scene::listAvailableElements()
 {
+   std::string elements = "[ ";
+   int c = 0;
+   for (auto o : this->gameObjects) {
+      if (c  < 1) { elements += o->getName(); }
+      else{ elements += ", " + o->getName(); }
+      c++;
+   }
+   elements += " ]";
+   return elements;
 }
 
 bool Scene::isAvailable(std::string gameElementName)

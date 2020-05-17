@@ -4,6 +4,7 @@
 #include <vector>
 
 #define NULL_QUERY "#nullquery#"
+#define EXIT_STR "#exit#"
 
 struct character_query {
    character_query(std::string q, std::string r) {
@@ -81,6 +82,10 @@ public:
       }
       else {
          theResult += this->greeting;
+         if (this->name == "Dr. Secretary") {
+            theResult += "\n\n[mission, \\leave]";
+         }
+         
       }
       return theResult;
    }

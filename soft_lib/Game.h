@@ -25,6 +25,8 @@ private:
    
    //std::string          test;
 
+   std::vector<Scene*> *scenes;
+
 public:
    Game() {
       
@@ -36,13 +38,15 @@ public:
       playerPhoneBook      = new PhoneBook();
       
    }
-   Game(Scene* inventory, Scene* current,  GameObjectRepository* go_db)
+   Game(Scene* inventory, Scene* current, GameObjectRepository* go_db, std::vector<Scene*> *scens)
       : Game()
    {
       
       playerInventory = inventory;
       currentScene = current;
       myGameObjects = go_db;
+
+      scenes = scens; 
 
       //Create Secretary, add to contacts + GameObjectRepository
       Secretary* secretary = new Secretary();
@@ -51,7 +55,10 @@ public:
       CharacterRepository::insertCharacter(secretary);
       
    }
-
+   Scene* getScene(std::string name) {
+      for (auto s : *scenes) { if (s->getName() == name) { return s; } }
+      return nullptr;
+   }
 
    //std::string getStr();
    GameObject* getCurrentGameObject() { return currentGameObject; }

@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include "Scene.h"
 
 class UserInterface_IO { //<<:Singleton:>>
    //UserInterface_IO* theUserInterface_IO;
@@ -26,6 +27,18 @@ class UserInterface_IO { //<<:Singleton:>>
 
 public: 
    
+   static void out_scene(Scene *scene) {
+      UserInterface_IO* ref = getReference();
+      for (int i = 0; i < 50; i++) { ref->output("\n"); }
+
+      std::string print;
+      print = scene->getName()+ ":\n";
+      print += scene->getDescription();
+      print += "\n\nYou see the following things in the scene: \n" + scene->listAvailableElements();      
+      print += "\n\nCommands : [ \\leave, \\secretary, \\inventory]";
+      print += "\n>>";
+      ref->output(print);
+   }
 
    static void out(std::string content) {
       UserInterface_IO* ref = getReference();
