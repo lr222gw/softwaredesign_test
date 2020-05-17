@@ -186,9 +186,9 @@ public:
          UserInterface_IO::out_object(*this->game->getCurrentGameObject(), interactionTypes);
          input = UserInterface_IO::in();
          parseInput(input);
-         if (input == "\\back") {
-            enterScene(this->game->getCurrentScene()->getName());
-         }
+         //if (input == "\\back") {
+         //   enterScene(this->game->getCurrentScene()->getName());
+         //}
       }
 
       return "Done";
