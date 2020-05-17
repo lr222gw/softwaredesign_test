@@ -8,7 +8,7 @@ std::string Scene::listAvailableElements()
    int c = 0;
    for (auto o : this->gameObjects) {
       if (c  < 1) { elements += o->getName(); }
-      else{ elements += ", " + o->getName(); }
+      else{ elements += ", " +  o->getName(); }
       c++;
    }
    elements += " ]";

@@ -27,6 +27,32 @@ class UserInterface_IO { //<<:Singleton:>>
 
 public: 
    
+   static void out_object_options(GameObject* obj, std::string interactionType ,std::vector<InteractionOption*> interactionOptions) {
+      UserInterface_IO* ref = getReference();
+      for (int i = 0; i < 50; i++) { ref->output("\n"); }
+
+      std::string print;
+      print = obj->getName() + ":\n";
+      print += "How would you like to '" + interactionType + "'\n";
+      
+      print += "\n\nOptions : [ ";
+      int c = 0;
+      for (auto it : interactionOptions) {
+         if (c < 1) { print += it->getOption(); }
+         else {
+            print += ", " + it->getOption();
+         }
+         c++;
+      }
+      print += " ]\n";
+
+      //print += "Commands : [ \\leave ]";
+
+      print += "\n>>";
+      ref->output(print);
+
+   }
+
    static void out_object(GameObject* obj, std::vector<InteractionType*> interactionTypes) {
       UserInterface_IO* ref = getReference();
       for (int i = 0; i < 50; i++) { ref->output("\n"); }
@@ -52,7 +78,7 @@ public:
 
    }
 
-   static void out_inventory(Scene* scene) {
+   static void out_inventory(Scene* scene) { //TODO Not used anymore?
       UserInterface_IO* ref = getReference();
       for (int i = 0; i < 50; i++) { ref->output("\n"); }
 

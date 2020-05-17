@@ -10,16 +10,17 @@ std::vector<InteractionType*> GameObject::listInteractionTypes()
 {
    std::vector<InteractionType*> toret;               //Filter out invalid interactionTypes...
    for (auto it : this->interactionTypes ) {
-      if (this->isOn_state) {
-         if (it->getActionName() != "Turn On") {
+      /*if (this->isOn_state) {
+         if (it->getActionName() != "TurnOn") {
             toret.push_back(it);
          }
       }
       else {
-         if (it->getActionName() != "Turn Off") {
+         if (it->getActionName() != "TurnOff") {
             toret.push_back(it);
          }
-      }
+      }*/
+      toret.push_back(it);
    }
    //return interactionTypes;
    return toret;
@@ -27,16 +28,16 @@ std::vector<InteractionType*> GameObject::listInteractionTypes()
 
 bool GameObject::startInteraction(std::string theInteractionType)
 {
-   if (this->isOn_state) {
-      if (theInteractionType == "Turn On") {
+   /*if (this->isOn_state) {
+      if (theInteractionType == "TurnOn") {
          return false;
       }
    }
    else {
-      if (theInteractionType == "Turn Off") {
+      if (theInteractionType == "TurnOff") {
          return false;
       }
-   }
+   }*/
 
    for (auto type  : this->listInteractionTypes()) {
       if (type->getActionName() == theInteractionType) {
@@ -59,6 +60,18 @@ void GameObject::setCurrentInteractionOptions(std::string the_options)
          this->currentOption = io;
       }
    }
+}
+
+std::string GameObject::currentInteractionOptions_status() {
+   std::string result;
+   if (this->currentOption != nullptr) {
+      //result = "You selected " + this->currentOption->getOption();
+      result = this->currentOption->getOption();
+   }
+   else {
+      result = "No option was set.";
+   }
+   return result;
 }
 
 std::string GameObject::startCurrentInteraction()

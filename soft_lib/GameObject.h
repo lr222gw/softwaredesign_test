@@ -23,7 +23,7 @@ class GameObject : public GameElement {
 
    std::string                   description;
 
-   bool isOn_state;  
+   //bool isOn_state;  
 
 public:
    GameObject():GameElement(NULL_ID){
@@ -31,7 +31,7 @@ public:
       currentInteraction      = nullptr;
       currentOption           = nullptr;
 
-      isOn_state              = false;
+      //isOn_state              = false;
    }
 
    GameObject(std::string obj_id, std::vector<InteractionType*> interactionTypes, std::string desc, bool isOn = false) 
@@ -44,15 +44,25 @@ public:
       currentInteraction      = nullptr;
       currentOption           = nullptr;
       description             = desc;
-      isOn_state = isOn;
+      //isOn_state = isOn;
       
    }
 
-   std::string getDescription() { return description; }
+   std::string getDescription() {
+      std::string dynamicDesc = description;
+      for (auto d : interactionTypes) {
+         dynamicDesc += "\n"+ d->getTypeState();
+      }
+
+      return dynamicDesc ; 
+   
+   }
 
    //std::string getid();
    InteractionType* getCurrentInteraction() { return currentInteraction; }
    void setCurrentInteraction(InteractionType* curr) { currentInteraction = curr; }
+
+   std::string currentInteractionOptions_status();
 
    std::vector<InteractionType*> listInteractionTypes();
    bool startInteraction(std::string theInteractionType);

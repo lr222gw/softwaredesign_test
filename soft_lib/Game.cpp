@@ -50,7 +50,7 @@ std::vector<InteractionOption*> Game::selectInteraction(GameObject *theGameObjec
    if (validPick) {
       options = theGameObject->listCurrentInteractionOptions();
       //this->setCurrentGameObject(theGameObject);
-      this->setCurrentGameObject(theGameObject);
+      //this->setCurrentGameObject(theGameObject); <-- This is done in SelectGameObject....
    }
 
    return options;

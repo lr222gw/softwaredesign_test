@@ -5,10 +5,13 @@
 //#define NULL_OPTION "#no_option#"
 #define NULL_OPTION ""
 
+
+
 class InteractionType {
 protected:
    std::string                      actionName;
    std::vector<InteractionOption*>  optionList;
+   std::string                      typeState;
    
 public:
    InteractionType() {  //Should not need a constructor! 
@@ -18,6 +21,7 @@ public:
    std::vector<InteractionOption*>  getActionOptions()   { return optionList; }
 
    virtual std::string action(std::string obj_name, std::string option) = 0;
+   std::string getTypeState() { return typeState; };
 };
 
 class Move : public InteractionType {
@@ -27,6 +31,7 @@ public:
             
       optionList.push_back(new carefully());
       optionList.push_back(new forcefully());
+      
    }
 
    std::string action(std::string obj_name, std::string option = NULL_OPTION) override {
@@ -41,43 +46,59 @@ public:
 
       optionList.push_back(new carefully());
       optionList.push_back(new forcefully());
+      typeState = "Closed";
    }
    std::string action(std::string obj_name, std::string option = NULL_OPTION) override {
+      typeState = "Opened";
       return "You opened " + obj_name + " " + option;
    }
 };
 
-class TurnOff : public  InteractionType {
+class ToggleOnOff : public  InteractionType {
 public:
 
-   TurnOff() {
-      this->actionName = "Turn Off";
-      optionList.push_back(new carefully());
-      optionList.push_back(new forcefully());
+   ToggleOnOff() {
+      this->actionName = "TurnOff";
+      //optionList.push_back(new carefully());
+      //optionList.push_back(new forcefully());
+      typeState = "is On";
    }
    std::string action(std::string obj_name, std::string option = NULL_OPTION) override {
-      return "You turned off " + obj_name +" "+ option;
+      
+      if (typeState == "is Off") {
 
+         this->actionName = "TurnOff";
+         typeState = "is On";
+         return "You turned On " + obj_name +" "+ option;
+      }
+      else {
+
+         typeState = "is Off";
+         this->actionName = "TurnOn";
+         return "You turned off " + obj_name +" "+ option;
+      }
    }
 };
 
-class TurnOn : public InteractionType {
-public:
-   TurnOn() {
-      this->actionName = "Turn On";
-      optionList.push_back(new carefully());
-      optionList.push_back(new forcefully());
-   }
-   std::string action(std::string obj_name, std::string option = NULL_OPTION) override {
-      return "You turned on " + obj_name + " " + option;
-
-   }
-};
+//class TurnOn : public InteractionType {
+//public:
+//   TurnOn() {
+//      this->actionName = "TurnOn";
+//      optionList.push_back(new carefully());
+//      optionList.push_back(new forcefully());
+//      typeState = "is Off";
+//   }
+//   std::string action(std::string obj_name, std::string option = NULL_OPTION) override {
+//      typeState = "is On";
+//      return "You turned on " + obj_name + " " + option;
+//
+//   }
+//};
 
 class PickUp : public  InteractionType {
 public:
    PickUp() {
-      this->actionName = "Pick Up";
+      this->actionName = "PickUp";
    }
 
    std::string action(std::string obj_name, std::string option = NULL_OPTION) override {
@@ -101,8 +122,10 @@ class Taste : public InteractionType {
 public:
    Taste() {
       this->actionName = "Taste";
+      typeState = "not yet tasted...";
    }
    std::string action(std::string obj_name, std::string option = NULL_OPTION) override {
+      typeState = "has tasted it";
       return "You tasted " + obj_name + " " + option;
 
    }
@@ -113,6 +136,7 @@ public:
    Look() {
       this->actionName = "Look";
       optionList.push_back(new closely());
+      
       
    }
    std::string action(std::string obj_name, std::string option = NULL_OPTION) override {

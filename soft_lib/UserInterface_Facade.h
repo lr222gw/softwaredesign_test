@@ -16,19 +16,21 @@ class UserInterface_Facade {
 public:
    UserInterface_Facade() {                        //Setting up a Demoscene...
       //create InteractionTypes for Objects
-      Look    *Look_Type       = new Look(); 
-      TurnOn  *TurnOn_Type     = new TurnOn(); 
-      TurnOff *TurnOff_Type    = new TurnOff();
-      Taste   *Taste_Type      = new Taste(); 
-      Move    *Move_Type       = new Move();
+      Look        *Look_Type           = new Look(); 
+      //TurnOn     *TurnOn_Type           = new TurnOn(); 
+      //TurnOff    *TurnOff_Type          = new TurnOff();
+      ToggleOnOff *ToggleOnOff_type    = new ToggleOnOff();
+      Taste       *Taste_Type          = new Taste(); 
+      Move        *Move_Type           = new Move();
 
       //Prepare Demo Objects
       std::vector<InteractionType*> dummy_typeList{Look_Type, Taste_Type};
       GameObject *dummy = new GameObject("Dummy", dummy_typeList, "Dummy object, just a dummy...");
       
       //Prepare Object; lamp 
-      std::vector<InteractionType*> lamp_typeList{ Look_Type, Move_Type };
-      GameObject *lamp = new GameObject("Lamp", lamp_typeList, "It's an old lamp, there's a on-off-switch..." ,false );
+      //std::vector<InteractionType*> lamp_typeList{ Look_Type, Move_Type, TurnOn_Type, TurnOff_Type };
+      std::vector<InteractionType*> lamp_typeList{ Look_Type, Move_Type, ToggleOnOff_type };
+      GameObject *lamp = new GameObject("Lamp", lamp_typeList, "It's an old lamp, there's a on-off-switch..." );
 
       //Prepare Object Frog
       std::vector<InteractionType*> frog_typeList{ Look_Type, Taste_Type };
@@ -180,12 +182,32 @@ public:
    std::string interactWithObject(std::string objet) {
 
       std::string input = "";
-      while (input != EXIT_STR && input != "\\leave"){
+      while (input != EXIT_STR && input != "\\leave"){ //TODO:: using leave must cause the interaction to stop! bl.a. unset currentGameObject...
 
          std::vector<InteractionType*> interactionTypes = this->game->selectGameObject(objet);
          UserInterface_IO::out_object(*this->game->getCurrentGameObject(), interactionTypes);
          input = UserInterface_IO::in();
-         parseInput(input);
+
+         std::vector<InteractionOption*> interactionOptions = 
+            game->selectInteraction(*this->game->getCurrentGameObject(),input);
+         if (interactionOptions.size() > 0) { 
+            UserInterface_IO::out_object_options(*this->game->getCurrentGameObject(), input, interactionOptions);
+            input = UserInterface_IO::in();
+
+            game->setInteractionOptions(input);
+            std::string option_res = (*this->game->getCurrentGameObject())->currentInteractionOptions_status();
+            option_res = "You selected to " +(*this->game->getCurrentGameObject())->getCurrentInteraction()->getActionName() + " "+ option_res;
+            option_res += "\n\n type Ok to begin...";
+            UserInterface_IO::out(option_res);
+            //input = UserInterface_IO::in();
+            UserInterface_IO::in(); //Only confirmation message... no nead to read it
+         }
+         std::string interactionResult = this->game->startInteraction();
+
+         UserInterface_IO::out(interactionResult);
+         UserInterface_IO::in();
+
+         //parseInput(input);
          //if (input == "\\back") {
          //   enterScene(this->game->getCurrentScene()->getName());
          //}
