@@ -27,6 +27,44 @@ class UserInterface_IO { //<<:Singleton:>>
 
 public: 
    
+   static void out_object(GameObject* obj, std::vector<InteractionType*> interactionTypes) {
+      UserInterface_IO* ref = getReference();
+      for (int i = 0; i < 50; i++) { ref->output("\n"); }
+
+      std::string print;
+      print = obj->getName() + ":\n";
+      print += obj->getDescription();
+
+      print += "\n\nInteractions : [ ";
+      int c = 0;
+      for (auto it : interactionTypes) {
+         if (c < 1) { print += it->getActionName(); }
+         else {
+            print +=  ", " + it->getActionName() ;
+         }
+         c++;
+      }
+      print += " ]\n\n";
+      print += "Commands : [ \\leave ]"; //, \\secretary, \\inventory, \\back 
+
+      print += "\n>>";
+      ref->output(print);
+
+   }
+
+   static void out_inventory(Scene* scene) {
+      UserInterface_IO* ref = getReference();
+      for (int i = 0; i < 50; i++) { ref->output("\n"); }
+
+      std::string print;
+      print = scene->getName() + ":\n";
+      print += scene->getDescription();
+      print += "\n\nThese are the items in your inventory: \n" + scene->listAvailableElements();
+      print += "\n\nCommands : [\\secretary, \\back ]";  // \\leave, \\back
+      print += "\n>>";
+      ref->output(print);
+   }
+
    static void out_scene(Scene *scene) {
       UserInterface_IO* ref = getReference();
       for (int i = 0; i < 50; i++) { ref->output("\n"); }
@@ -35,7 +73,7 @@ public:
       print = scene->getName()+ ":\n";
       print += scene->getDescription();
       print += "\n\nYou see the following things in the scene: \n" + scene->listAvailableElements();      
-      print += "\n\nCommands : [ \\leave, \\secretary, \\inventory, \\back ]";
+      print += "\n\nCommands : [ \\leave, \\secretary, \\inventory ]";  // , \\back
       print += "\n>>";
       ref->output(print);
    }

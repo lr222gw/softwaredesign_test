@@ -17,7 +17,7 @@ public:
       //hardcoded for demo
       this->state = character_state(
          "Mission",
-         "You've been hired by mr.*Ceasar* to investigate a potential murder, the victims name is *Brutus*.\nYou should head to the crimescene, it's at the north corner of the *Town square*. You can't miss it.",
+         "You've been hired by mr.*Ceasar* to investigate a potential murder, the victims name is *Brutus*.\nYou should head to the crimescene, it's at the north corner of the *Townsquare*. You can't miss it.",
          std::vector<character_query>{
          character_query("Ceasar",
             "Ceasar is the owner of *MegaCorp*."),

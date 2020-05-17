@@ -27,7 +27,7 @@ std::string Character::query(std::string theQuery)
 
       
 
-      std::string formatedResponse = interaction_engine.formatResponse(theResponse, this);   // hmm
+      std::string formatedResponse = interaction_engine.formatResponse(theResponse, this->getQueryOptions(), this->getName());   // hmm
 
       return formatedResponse;
    }
@@ -35,15 +35,22 @@ std::string Character::query(std::string theQuery)
       //Alt. Commands
 
       std::string theResponse; 
-
-      if (theQuery == "\\back") { theResponse = this->state.presentation; }
-      else if (theQuery == "mission") { if (this->name == "Dr. Secretary") { theResponse = this->state.presentation; } }
+      std::string options;
+      //if (theQuery == "\\back") { theResponse = this->state.presentation; }
+      //if (theQuery == "\\back") { theResponse = this->present_by_state(); }
+      if (theQuery == "\\back") { return this->present_by_state(); }
+      else if (theQuery == "mission") { 
+         if (this->name == "Dr. Secretary") { 
+            theResponse = this->state.presentation; 
+            //options     = "\\back, \\leave";
+            options     = this->getQueryOptions();         } 
+      }
       else if (theQuery == "\\leave") { return EXIT_STR; }
       else {
          theResponse = "I don't know how to respond to that...";
-
+         options = "\\back, \\leave";
       }
-      std::string formatedResponse = interaction_engine.formatResponse(theResponse, this);
+      std::string formatedResponse = interaction_engine.formatResponse(theResponse, options, this->getName());
 
       return formatedResponse;
    }

@@ -16,6 +16,7 @@ public:
    
    //std::string formatResponse(std::string theResponse, std::string nextConversationOptions, std::string name);
    //std::string formatResponse(std::string theResponse, std::string nextConversationOptions, Character * curr);
-   std::string formatResponse(std::string theResponse, Character * curr);
+   //std::string formatResponse(std::string theResponse, Character * curr);
+   std::string formatResponse(std::string theResponse, std::string interactionOptions, std::string name);
 
 };

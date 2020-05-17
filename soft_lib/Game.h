@@ -33,6 +33,7 @@ public:
       playerInventory   = nullptr;
       currentScene      = nullptr;
       myGameObjects     = nullptr;
+      scenes            = nullptr;
 
       currentGameObject    = new GameObject(); //TODO NULL_ID? 
       playerPhoneBook      = new PhoneBook();
@@ -60,10 +61,14 @@ public:
       for (auto s : *scenes) { if (s->getName() == name) { currentScene = s; return s; } }
       return nullptr;
    }
+   void unset_currentScene() {
+      //static Scene emptyScene = new Scene();
+      currentScene = nullptr;
+   }
 
    //std::string getStr();
    Scene* getCurrentScene() { return currentScene; }
-   GameObject* getCurrentGameObject() { return currentGameObject; }
+   GameObject** getCurrentGameObject() { return &currentGameObject; }
    void setCurrentGameObject(GameObject* curr) { currentGameObject = curr; }
    
 

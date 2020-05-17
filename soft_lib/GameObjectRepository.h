@@ -12,11 +12,14 @@ class GameObjectRepository {
 
 public:
    GameObject* obj_Latest;
-   GameObjectRepository() {
+   GameObjectRepository(std::vector<GameObject*> objs) {
+
+      obj_list = objs;
+
 
       //TODO: Replace dummy code with a real database
       //This is dummy code... 
-      Look* dummy_type = new Look();
+     /* Look* dummy_type = new Look();
       TurnOff* off = new TurnOff();
       TurnOn* on = new TurnOn();
       std::vector<InteractionType*> gameobj_interactions;
@@ -28,8 +31,13 @@ public:
       GameObject * dummy_Obj = new GameObject("Dummy", gameobj_interactions);
       
       obj_list.push_back(dummy_Obj);
-      obj_Latest = dummy_Obj;
+      obj_Latest = dummy_Obj;*/
       //std::cout  << "Added dummy_obj to Obj_list: " << obj_Latest->getid() << std::endl;
+      std::vector<InteractionType*> gameobj_interactions;
+      obj_Latest = nullptr;
+
+
+
    }
 
    //GameObjectRepository(const GameObjectRepository& cpy) {

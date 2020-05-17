@@ -8,12 +8,14 @@ std::string InteractionEngine::parseQuery(std::string theQuery)
 }
 
 //std::string InteractionEngine::formatResponse(std::string theResponse, std::string nextConversationOptions, Character* curr)
-std::string InteractionEngine::formatResponse(std::string theResponse, Character* curr)
+std::string InteractionEngine::formatResponse(std::string theResponse, std::string QueryOptions, std::string name)// Character* curr)
 {
-   std::string concatinated = curr->getName() + ":\n";
+   
+   //std::string concatinated = curr->getName() + ":\n";
+   std::string concatinated = name + ":\n";
    concatinated += theResponse + "\n";
    std::string conversationOptions = "\n[";
-   conversationOptions += curr->getQueryOptions();
+   conversationOptions += QueryOptions;
    conversationOptions += " ]\n";
 
    concatinated += conversationOptions;

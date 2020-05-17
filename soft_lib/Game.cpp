@@ -10,22 +10,24 @@
 
 std::vector<InteractionType*> Game::selectGameObject(std::string name)
 {
+   
    bool result = currentScene->isAvailable(name);
    std::vector<InteractionType*> interactionList;
 
    if (result) {
       
       //GameObject gameObj;
-      GameObject *gameObj = getCurrentGameObject();
+      GameObject **gameObj = getCurrentGameObject();
       
       //bool gotObj = this->myGameObjects->getGameObject(name, &gameObj);      
-      bool gotObj = this->myGameObjects->getGameObject(name, gameObj);      
+      bool gotObj = this->myGameObjects->getGameObject(name, *gameObj);      
                  
       if(gotObj){
          
          //interactionList  = gameObj.listInteractionTypes();
-         interactionList  = gameObj->listInteractionTypes();
-         setCurrentGameObject(gameObj);
+         //(*gameObj)->listInteractionTypes();
+         interactionList  = (*gameObj)->listInteractionTypes();
+         setCurrentGameObject(*gameObj);
          return interactionList;
       }
       else {

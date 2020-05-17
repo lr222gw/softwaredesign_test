@@ -116,7 +116,8 @@ public:
          c++;
       }
       //Add Standard Options
-      nextConversationOptions += ", \\Townquare, \\Back, \\leave";  //TODO:: lägg till saker som behövs här....
+      nextConversationOptions += ", \\Back, \\leave";  //TODO:: lägg till saker som behövs här....
+      
 
       return nextConversationOptions;
    }
