@@ -23,8 +23,14 @@ std::string Character::query(std::string theQuery)
 
       std::string plotState = Plot_engine.getPlotState();                  //What do we want here....
 
-      std::string theResponse = q.response;
 
+      std::string theResponse = q.response;  
+      if (q.something != nullptr) {
+         //*this->tradeSlot = (q.something);         
+         //this->tradeSlot = (&q.something);
+         this->tradeSlot = (q.getsomething());
+         
+      }
       
 
       std::string formatedResponse = interaction_engine.formatResponse(theResponse, this->getQueryOptions(), this->getName());   // hmm
@@ -39,7 +45,7 @@ std::string Character::query(std::string theQuery)
       //if (theQuery == "\\back") { theResponse = this->state.presentation; }
       //if (theQuery == "\\back") { theResponse = this->present_by_state(); }
       if (theQuery == "\\back") { return this->present_by_state(); }
-      else if (theQuery == "mission") { 
+      else if (theQuery == "Mission") { 
          if (this->name == "Dr. Secretary") { 
             theResponse = this->state.presentation; 
             //options     = "\\back, \\leave";

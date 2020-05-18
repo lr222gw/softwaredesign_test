@@ -24,4 +24,9 @@ public:
    std::string listAvailableElements();
    bool isAvailable(std::string gameElementName);
    bool isGameObject(std::string gameElementName);
+
+   void addGameObject(GameObject* obj) {
+      this->gameObjects.push_back(obj);
+   }
+
 };

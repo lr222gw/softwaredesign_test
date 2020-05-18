@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameElement.h"
+#include "GameObject.h"
 #include <vector>
 
 #define NULL_QUERY "#nullquery#"
@@ -10,20 +11,33 @@ struct character_query {
    character_query(std::string q, std::string r) {
       query = q;
       response = r;
+      this->something = nullptr;
    }
+   character_query(std::string q, std::string r, GameObject *thing)
+      : character_query(q,r)
+   {
+      this->something = thing;
+   }
+   GameObject* getsomething() {
+      return something;
+   }
+   GameObject* something;
    std::string query;
    std::string response;
 };
 
 struct character_state {
+   //
    character_state() {
       state = "disturb";
       presentation = "I don't have time right now...";
       nmbr_of_quries = 0;
+      
    }
    character_state(std::string state, 
       std::string presentation, 
       std::vector<character_query> queries) {
+      
 
       this->state = state;
       this->presentation = presentation;
@@ -35,6 +49,15 @@ struct character_state {
       }
 
    }
+
+   /*character_state(std::string state,
+      std::string presentation,
+      std::vector<character_query> queries, 
+      GameObject *object)
+      : character_state(state, presentation, queries)
+   {
+      this->something = object;
+   }*/
    //identifier / Query 
    std::string state;
    
@@ -57,6 +80,8 @@ protected:
 
    bool pending_state_presentation; 
 
+   GameObject* tradeSlot;
+
 public:
    /*Character(std::string name, std::string greeting, character_state* chr_state = new character_state())
       :GameElement(name), greeting(greeting), state(chr_state){} */
@@ -66,8 +91,21 @@ public:
    Character(std::string name, std::string greeting)
       :GameElement(name), greeting(greeting) {
       pending_state_presentation = false;
+      tradeSlot = nullptr;
+      
     }
+   Character(std::string name, std::string greeting, character_state chara_state)
+      :GameElement(name), greeting(greeting), state(chara_state) {
+      pending_state_presentation = true;
+      tradeSlot = nullptr;
 
+   }
+   GameObject* checkTradeSlot() {
+      return tradeSlot;
+   }
+   void closeTradeSlot() {
+      tradeSlot = nullptr;
+   }
    
    std::string getInitialGreeting() { return greeting; }
 
@@ -85,7 +123,13 @@ public:
       else {
          theResult += this->greeting;
          if (this->name == "Dr. Secretary") {
-            theResult += "\n\n[mission, \\leave]";
+            
+            theResult += "\n\n[ "+ this->state.state +", \\leave ]";
+         }
+         else {
+            
+            //theResult += "\n\n["+ this->state.state +", \\leave]";
+            theResult += "\n\n[ \\leave ]";
          }
          
       }

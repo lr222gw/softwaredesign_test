@@ -22,7 +22,13 @@ public:
    //CharacterInterface*  create(std::string theCharacter); //Constructor
 
    std::string          sendQuery(std::string theQuery);
-   std::string          endConversation();
+   GameObject*          promptItem();
+   void                 close_Item();
+
+   std::string          endConversation() {
+      this->currentActive = nullptr;
+      return "bye";
+   }
 
    //std::string          activate();
    void                 activate();

@@ -64,7 +64,8 @@ public:
    }
    void unset_currentScene() {
       //static Scene emptyScene = new Scene();
-      currentScene = nullptr;
+      //currentScene = nullptr;
+      currentScene = this->getScene("start");
    }
    void unset_currentGameObject() {
       GameObject *emptyObject = new GameObject(); //TODO: Ugly... causing memory leaks... but but...
@@ -77,6 +78,9 @@ public:
    GameObject** getCurrentGameObject() { return &currentGameObject; }
    void setCurrentGameObject(GameObject* curr) { currentGameObject = curr; }
    
+   void addToInventory(GameObject * obj) {
+      this->playerInventory->addGameObject(obj);
+   }
 
    std::vector<InteractionType*> selectGameObject(std::string name);
    std::vector<InteractionOption*> selectInteraction(GameObject *theGameObject, std::string theInteraction); //TODO: Change to std::vector<InteractionType>

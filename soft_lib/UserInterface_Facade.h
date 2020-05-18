@@ -40,8 +40,19 @@ public:
       std::vector<InteractionType*> wallet_typeList{ Look_Type };
       GameObject* wallet = new GameObject("Wallet", wallet_typeList, "My wallet, it's as empty as my heart...");
 
+      //Prepare object Phone, for balto...
+      std::vector<InteractionType*> phone_typeList{ Look_Type };
+      GameObject* phone = new GameObject("Phone", phone_typeList, "The phone seems to be broken...");
+
       //Prepare a Some random Character.. : Balto 
-      Character *balto = new Character("Balto", "Tjena! Name's Balto. what do you want?...");
+      character_state balto_state(
+         "Free Phones",
+         "Hi friend, I'll give you a phone. It's free!",
+         std::vector<character_query>{
+            character_query("Why", "I don't know! Here Take it!", phone)
+         }
+      );
+      Character *balto = new Character("Balto", "Tjena! Name's Balto. what do you want?...", balto_state);
       
       CharacterRepository::insertCharacter(balto);
       
@@ -69,7 +80,7 @@ public:
 
       //Obj
       std::vector<GameObject*> objlist{
-         dummy, lamp, frog, wallet
+         dummy, lamp, frog, wallet, phone
       };
       GameObjectRepository* objrep = new GameObjectRepository(objlist);
 
@@ -260,8 +271,28 @@ public:
          std::string input_str = UserInterface_IO::in();
          //if (input_str == "\\townsquare") { break; }
          response = character_interface->sendQuery(input_str);
-         if (response != EXIT_STR) { UserInterface_IO::out(response); }
+         
+         if (response != EXIT_STR) { 
+            GameObject* gift = character_interface->promptItem();
+            if (gift != nullptr) {
+               UserInterface_IO::out(response + "\n Receiving "+ gift->getName() +" Do you accept?\n[ yes, no ]");
+               std::string gift_str = UserInterface_IO::in();
+               if (gift_str == "yes") {
+                  this->game->addToInventory(gift);
+               }else{}
+               character_interface->close_Item();
+               UserInterface_IO::out("YOU GOT AN ITEM!\n\n[ \\leave ]");
+
+            }
+            else {
+
+               UserInterface_IO::out(response); 
+            }
+         }
+         
+         
       }
+      character_interface->endConversation();
       return "done";
    }
 

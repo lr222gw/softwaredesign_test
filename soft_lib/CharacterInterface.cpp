@@ -14,6 +14,18 @@ std::string CharacterInterface::sendQuery(std::string theQuery)
    return response;
 }
 
+GameObject* CharacterInterface::promptItem() {
+   GameObject * gift = this->currentActive->checkTradeSlot();
+
+   return gift;   
+}
+
+void CharacterInterface::close_Item() {
+   this->currentActive->closeTradeSlot();
+   
+}
+
+
 void CharacterInterface::activate()
 {
    //std::string greeting = currentActive->getInitialGreeting();
