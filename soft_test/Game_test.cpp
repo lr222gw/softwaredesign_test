@@ -5,11 +5,12 @@
 class Game_selectGameObject_arrange : public testing::Test {
 protected: 
    Look dummyType;
-   TurnOn dummyTypeon;
-   TurnOff dummyTypeoff;
+   //TurnOn dummyTypeon;
+   //TurnOff dummyTypeoff;
+   ToggleOnOff dummyTypeoff;
    std::vector<InteractionType*> typeList;
    GameObject dummy;
-   std::vector<GameObject> gobj_vec;
+   std::vector<GameElement*> gobj_vec;
    Scene* c_scene;
    GameObjectRepository* objrep;
    Scene* i_scene;
@@ -19,17 +20,19 @@ public:
    void SetUp() override {
       
       typeList.push_back(&dummyType);
-      typeList.push_back(&dummyTypeon);
       typeList.push_back(&dummyTypeoff);
+      //typeList.push_back(&dummyTypeon);
+      //typeList.push_back(&dummyTypeoff);
 
-      dummy = GameObject("Dummy", typeList);
-      gobj_vec.push_back(dummy);
+      dummy = GameObject("Dummy", typeList, "a dummy");
+      gobj_vec.push_back(&dummy);
 
-      c_scene = new Scene(gobj_vec);
-      objrep = new GameObjectRepository();
+      c_scene = new Scene(gobj_vec,"Scene", "description");
+      std::vector<GameObject*> objs{&dummy};
+      objrep = new GameObjectRepository(objs);
       i_scene = new Scene();
 
-      game = Game(i_scene, c_scene, objrep);
+      game = Game(i_scene, c_scene, objrep, new  std::vector<Scene*>{i_scene, c_scene});
    }
    void TearDown() override {
       delete  c_scene;
@@ -62,7 +65,7 @@ TEST_F(Game_selectGameObject_arrange, retuns_ZeroVector_when_data_NOTexists) {
 TEST_F(Game_selectInteraction_arrange, retuns_valid_interactionOptions_when_data_exists) {
 
    std::vector<InteractionType*> types = game.selectGameObject("Dummy"); //Select a "currentGameObject"
-   std::vector<InteractionOption*> options = game.selectInteraction(game.getCurrentGameObject(), "Turn On");    //NOTE; Dummy is setup inside Fixture!
+   std::vector<InteractionOption*> options = game.selectInteraction(*game.getCurrentGameObject(), "Turn On");    //NOTE; Dummy is setup inside Fixture!
 
    ASSERT_NE(options.size(), 0); // If object returned a List of 0 interactionTypes... 
 }
@@ -70,7 +73,7 @@ TEST_F(Game_selectInteraction_arrange, retuns_valid_interactionOptions_when_data
 TEST_F(Game_selectInteraction_arrange, retuns_ZeroVector_interactionOptions_when_data_NOTexists) {
 
    std::vector<InteractionType*>    types    = game.selectGameObject("Dummy"); //Select a "currentGameObject"
-   std::vector<InteractionOption*> options   = game.selectInteraction(game.getCurrentGameObject(), "Open");    //Cant Open the Dummy...
+   std::vector<InteractionOption*> options   = game.selectInteraction(*game.getCurrentGameObject(), "Open");    //Cant Open the Dummy...
 
    ASSERT_EQ(options.size(), 0); // If object returned a List of 0 interactionTypes... then OK; Open deos not exist on Dummy 
 }

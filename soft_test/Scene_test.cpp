@@ -9,11 +9,11 @@ TEST(Scene_isAvailable, returns_true_on_available) {
    std::vector<InteractionType*> typeList;
    typeList.push_back(&dummyType);
 
-   GameObject dummy("Dummy", typeList);
-   std::vector<GameObject> gobj_vec;
-   gobj_vec.push_back(dummy);
+   GameObject dummy("Dummy",typeList, "Dummydescription");
+   std::vector<GameElement*> gobj_vec;
+   gobj_vec.push_back(&dummy);
 
-   Scene c_scene(gobj_vec);
+   Scene c_scene(gobj_vec,"testscene","scen to test stuff");
    //GameObjectRepository objrep;
    //Scene i_scene;     
 

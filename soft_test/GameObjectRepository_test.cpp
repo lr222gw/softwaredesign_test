@@ -5,8 +5,10 @@ TEST(GameObjectRepository_getGameObject, returns_true_on_available) {
    // OBS; this test is dependent on the fact that GameObjectRepository does create and loads a Dummy object!
 
    //Arrange
-   GameObjectRepository gor = GameObjectRepository(); 
-   GameObject* obj = new GameObject();
+   GameObject* dum = new GameObject("Dummy", std::vector<InteractionType*>{}, "dum dummy");
+   std::vector<GameObject*> f{ dum };
+   GameObjectRepository gor = GameObjectRepository(f);
+   GameObject* obj  = new GameObject();
 
    //Act 
    bool result = gor.getGameObject("Dummy", obj);
@@ -18,7 +20,8 @@ TEST(GameObjectRepository_getGameObject, returns_true_on_available) {
 
 TEST(GameObjectRepository_getGameObject, returns_false_on_notavailable) {
    //Arrange
-   GameObjectRepository gor;
+   std::vector<GameObject*> f;
+   GameObjectRepository gor = GameObjectRepository(f);
    GameObject *obj = new GameObject();
    //Act
    bool result = gor.getGameObject("ThisIsNotAObjectThatExists", obj);
