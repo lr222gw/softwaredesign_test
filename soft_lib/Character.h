@@ -60,7 +60,9 @@ protected:
 public:
    /*Character(std::string name, std::string greeting, character_state* chr_state = new character_state())
       :GameElement(name), greeting(greeting), state(chr_state){} */
-
+   Character():GameElement(""),greeting(""),state(character_state()){
+      pending_state_presentation = false;
+   }
    Character(std::string name, std::string greeting)
       :GameElement(name), greeting(greeting) {
       pending_state_presentation = false;

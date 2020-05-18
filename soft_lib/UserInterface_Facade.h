@@ -43,7 +43,7 @@ public:
       //Prepare a Some random Character.. : Balto 
       Character *balto = new Character("Balto", "Tjena! Name's Balto. what do you want?...");
       
-      
+      CharacterRepository::insertCharacter(balto);
       
       //!Add Objects to ObjectVector for scenes
       //std::vector<GameObject> testScene_objects{ dummy, lamp, frog, balto }; //NOTE; Characters + objects
@@ -168,9 +168,17 @@ public:
       
 
       if (this->game->getCurrentScene() != nullptr) {
-         //Objects in currentScene
+         //Objects and Characters in currentScene
          if (this->game->getCurrentScene()->isAvailable(in)) {
-            interactWithObject(in);
+            Character *h = new Character();
+            
+            if (CharacterRepository::getCharacter(in, &h)) {
+               doInterviewScenario(in);
+            }
+            else {
+
+               interactWithObject(in);
+            }
          }
       }
       

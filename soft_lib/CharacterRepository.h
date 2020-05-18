@@ -58,6 +58,6 @@ public:
    }
 
    //? Why would this work if it isnt static and above methods must be static
-   bool getCharacter(std::string theCharacter, Character** character);
+   static bool getCharacter(std::string theCharacter, Character** character);
 
 };

@@ -81,7 +81,8 @@ CharacterInterface* Game::initiateConversation(std::string theCharacter)
       //getCharacter from PhoneBook
       Character* currentChar = this->playerPhoneBook->getContactMethod(theCharacter); //todo: Does not really have to return a Character pointer...
       
-      if (currentChar != nullptr) { //todo: Note that, sometimes we dont need to contact somone through Pohne.. what if we could talk to them? Is it necessary to have them in our contact book then? 
+      //if (currentChar != nullptr) { 
+      if (true) { //todo: Note that, sometimes we dont need to contact somone through Pohne.. what if we could talk to them? Is it necessary to have them in our contact book then? 
 
          //Create a CharacterInterface for the given Character
          //CharacterInterface curr_characterInterface = 
