@@ -44,7 +44,7 @@ public:
       std::vector<InteractionType*> phone_typeList{ Look_Type };
       GameObject* phone = new GameObject("Phone", phone_typeList, "The phone seems to be broken...");
 
-      //Prepare a Some random Character.. : Balto 
+      //Prepare a Some random Character.. : Balto  
       character_state balto_state(
          "Free Phones",
          "Hi friend, I'll give you a phone. It's free!",
